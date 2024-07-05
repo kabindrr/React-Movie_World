@@ -1,12 +1,16 @@
 import "./App.css";
 import { Button } from "react-bootstrap";
+import { Display } from "./components/Display";
+import { Hero } from "./components/Hero";
 
 const App = () => {
   return (
-    <>
-      Hellow from developers entry point
-      <Button className="btn btn-danger">Search movie</Button>
-    </>
+    <div className="wrapper">
+      {/* hero section */}
+      <Hero />
+      {/* Display Section */}
+      <Display />
+    </div>
   );
 };
 
