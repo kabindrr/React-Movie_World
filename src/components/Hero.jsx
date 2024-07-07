@@ -4,7 +4,7 @@ import { MovieCart } from "./MovieCart";
 import { fetchFromAPI } from "../utils/axios";
 import { randomChar } from "../utils/randomChar";
 
-export const Hero = () => {
+export const Hero = ({ addMovie }) => {
   const [searchedMovie, setSearchedMovie] = useState({});
 
   const [bgImg, setBgImg] = useState("");
@@ -32,6 +32,15 @@ export const Hero = () => {
     const str = searchRef.current.value;
     fetchMovie(str);
     searchRef.current.value = "";
+  };
+  const handleOnDelete = () => {
+    setSearchedMovie({});
+    setSearching(true);
+  };
+  const handleOnAddToTheMovieList = (mood) => {
+    addMovie({ ...searchedMovie, mood });
+    setSearchedMovie({});
+    setSearching(true);
   };
 
   const movieStyle = {
@@ -83,7 +92,11 @@ export const Hero = () => {
           <div>
             {!searching && (
               <div className="movie-card-display showMovie">
-                <MovieCart searchedMovie={searchedMovie} />
+                <MovieCart
+                  searchedMovie={searchedMovie}
+                  deleteFunc={handleOnDelete}
+                  handleOnAddToTheMovieList={handleOnAddToTheMovieList}
+                />
               </div>
             )}
           </div>
