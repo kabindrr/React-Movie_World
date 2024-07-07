@@ -1,11 +1,15 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-export const MovieCart = ({ searchedMovie }) => {
+export const MovieCart = ({
+  searchedMovie,
+  deleteFunc,
+  handleOnAddToTheMovieList,
+}) => {
   //   if (!searchedMovie) {
   //     return null;
   //   }
-  const { Poster, Title, imdbRating, Plot } = searchedMovie;
+  const { Poster, Title, imdbRating, Plot, mood, ImdbID } = searchedMovie;
   return (
     <div>
       <div className="container">
@@ -18,12 +22,43 @@ export const MovieCart = ({ searchedMovie }) => {
             <p>IMDB Rating:{imdbRating}</p>
             <p>{Plot?.slice(0, 90) + "......."}</p>
           </div>
-          <div className="d-flex justify-content-center gap-2">
-            <Button className="btn btn-warning m-2">Drama</Button>
-            <Button className="btn btn-success m-2">Action</Button>
-          </div>
+
+          {!mood && (
+            <div className="d-flex justify-content-center">
+              <Button
+                className="btn btn-warning m-2"
+                onClick={() => handleOnAddToTheMovieList("horror")}
+              >
+                Horror
+              </Button>
+              <Button
+                className="btn btn-success m-2"
+                onClick={() => handleOnAddToTheMovieList("action")}
+              >
+                Action
+              </Button>
+              <Button
+                className="btn btn-secondary m-2"
+                onClick={() => handleOnAddToTheMovieList("drama")}
+              >
+                Drama
+              </Button>
+              <Button
+                className="btn btn-info m-2 "
+                onClick={() => handleOnAddToTheMovieList("thriller")}
+              >
+                Thriller
+              </Button>
+            </div>
+          )}
+
           <div className="d-grid mt-3">
-            <Button className="btn btn-danger m-2">Delete</Button>
+            <Button
+              onClick={() => deleteFunc(ImdbID)}
+              className="btn btn-danger m-2"
+            >
+              Delete
+            </Button>
           </div>
         </div>
       </div>

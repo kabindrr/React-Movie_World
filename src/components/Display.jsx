@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MovieCart } from "./MovieCart";
 
-export const Display = () => {
+export const Display = ({ movieList, handleOnDeleteMovie }) => {
+  const [displayList, setDisplayList] = useState([]);
+  useEffect(() => {
+    setDisplayList(movieList);
+  }, [movieList]);
+
+  const handleOnFilter = (mood) => {
+    if (mood === "all") {
+      return setDisplayList(movieList);
+    }
+    setDisplayList(movieList.filter((mv) => mv.mood === mood));
+  };
   return (
     <div className="container mt-5 rounded">
       <div className="bg-dark p-3">
@@ -12,31 +23,56 @@ export const Display = () => {
               role="group"
               aria-label="Basic mixed styles example"
             >
-              <button type="button" className="btn btn-danger rounded">
+              <button
+                onClick={() => handleOnFilter("all")}
+                type="button"
+                className="btn btn-danger rounded"
+              >
                 All Movies
               </button>
-              <button type="button" className="btn btn-warning rounded">
+              <button
+                onClick={() => handleOnFilter("horror")}
+                type="button"
+                className="btn btn-warning rounded"
+              >
                 Horror
               </button>
-              <button type="button" className="btn btn-success rounded">
+              <button
+                onClick={() => handleOnFilter("action")}
+                type="button"
+                className="btn btn-success rounded"
+              >
                 Action
               </button>
-              <button type="button" className="btn btn-secondary rounded">
+              <button
+                onClick={() => handleOnFilter("drama")}
+                type="button"
+                className="btn btn-secondary rounded"
+              >
                 Drama
               </button>
-              <button type="button" className="btn btn-info rounded">
-                SCI-FI
+              <button
+                onClick={() => handleOnFilter("thriller")}
+                type="button"
+                className="btn btn-info rounded"
+              >
+                Thriller
               </button>
             </div>
-            <div className="mt-3 text-white text-center">2 Movies listed</div>
+            <div className="mt-3 text-white text-center">
+              {displayList.length} Movies listed
+            </div>
           </div>
         </div>
 
         <div className="row mt-5">
           <div className="col d-flex flex-wrap gap-2 justify-content-around">
-            {new Array(10).fill("").map((item, i) => (
+            {displayList.map((item, i) => (
               <div className="" key={i}>
-                {/* <MovieCart /> */}
+                <MovieCart
+                  searchedMovie={item}
+                  deleteFunc={handleOnDeleteMovie}
+                />
               </div>
             ))}
           </div>

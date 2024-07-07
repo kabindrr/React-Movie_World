@@ -64,10 +64,6 @@ nav {
   height: auto;
 }
 @media (max-width: 768px) {
-  .movie-card-item {
-    margin-top: 5px;
-    padding: 2px;
-  }
   .movie-card-item img {
     max-height: 160px;
     padding: auto;
