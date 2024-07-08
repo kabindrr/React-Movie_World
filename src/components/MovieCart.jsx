@@ -6,10 +6,7 @@ export const MovieCart = ({
   deleteFunc,
   handleOnAddToTheMovieList,
 }) => {
-  //   if (!searchedMovie) {
-  //     return null;
-  //   }
-  const { Poster, Title, imdbRating, Plot, mood, ImdbID } = searchedMovie;
+  const { Poster, Title, imdbRating, Plot, mood, imdbID } = searchedMovie;
   return (
     <div>
       <div className="container">
@@ -54,7 +51,7 @@ export const MovieCart = ({
 
           <div className="d-grid mt-3">
             <Button
-              onClick={() => deleteFunc(ImdbID)}
+              onClick={() => deleteFunc(imdbID)}
               className="btn btn-danger m-2"
             >
               Delete
