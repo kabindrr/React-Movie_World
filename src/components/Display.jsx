@@ -14,12 +14,12 @@ export const Display = ({ movieList, handleOnDeleteMovie }) => {
     setDisplayList(movieList.filter((mv) => mv.mood === mood));
   };
   return (
-    <div className="container mt-5 rounded">
-      <div className="bg-dark p-3">
+    <div className="container  d-flex justify-content-center mt-5 ">
+      <div className="bg-dark rounded p-3">
         <div className="row">
           <div className="col">
             <div
-              className="btn-group d-flex mb-3 gap-3"
+              className="btn-group d-flex mb-3 gap-1"
               role="group"
               aria-label="Basic mixed styles example"
             >
